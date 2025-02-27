@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 INPUT 1 OUTPUT - gps</title>
+    <style>
+
+        /* STYLE FOR THE INPUT FIELD */
+        #charInput {
+
+        }
+
+        /* STYLE FOR THE SUBMIT BUTTON */
+        #submitButton {
+
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+        }
+    </style>
+</head>
+<body>
+    <h2>where the f*ck am i?</h2>
+
+    
+    <!-- INPUT FIELD FOR 1 CHARACTER -->
+    <input type="text" id="charInput" maxlength="1">
+
+    <!-- BUTTON TO DISPLAY IMAGE -->
+    <button onclick="displayImage()" id="submitButton">f*ck if i know...</button>
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" src="" alt="Displayed Image">
+
+
+    <!-- Image Display Script Below -->
+    <script>
+        // Array of images
+        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
+        const images = [
+            "images/annapolis.png", //A
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851517/original_19cba628b5887d74fbd8b71cd87fdc84.png?1740631187?bc=0?text=B", //B
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851521/original_f351ef356462e7e894b6c926caebe1ed.png?1740631188?bc=0?text=C", //C
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851529/original_f5fe2e61f46d471801972cf4db010d0d.png?1740631188?bc=0?text=D", //D
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851527/original_b8b8be98a4d547a10b82413831b81ace.png?1740631188?bc=0?text=E", //E
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851523/original_1fc10d80b4c05db998d70865474ea065.png?1740631187?bc=0?text=F", //F
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851524/original_d5f33769c3aa32ea0efc2bc40f0f0990.png?1740631188?bc=0?text=G", //G
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851522/original_292db542adf7dd6f0e792296bc40fe5b.png?1740631188?bc=0?text=H", //H
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851526/original_f5bdfd4feb22d16741f8ec621cc88f71.png?1740631187?bc=0?text=I", //I
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851528/original_ae74b7d79e9f6a81f57ef0ebeb336f43.png?1740631189?bc=0?text=J", //J
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851503/original_00de2bd44f0b1c8365da5822b82fbad5.png?1740631184?bc=0?text=K", //K
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851502/original_bb840af499e4efa096982f9fb6e80515.png?1740631183?bc=0?text=L", //L
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851513/original_c0dbe5134814dd62f07b18557c1e86f4.png?1740631186?bc=0?text=M", //M
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851505/original_05719287295407dce7b9e10e19d94942.png?1740631184?bc=0?text=N", //N
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851507/original_549b66a026c202fa2d438fc216bd9908.png?1740631184?bc=0?text=O", //O
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851504/original_5152d3206fbede18d5c8c40ba363a39c.png?1740631184?bc=0?text=P", //P
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851510/original_d7052d330cb1142ddb1a46678fff6cc9.png?1740631184?bc=0?text=Q", //Q
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851506/original_eb8af7e551837fad7214c5db0373cae6.png?1740631184?bc=0?text=R", //R
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851509/original_b981838251bfbe7f24a24f0602f7e57d.png?1740631185?bc=0?text=S", //S
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851511/original_249ada5c18ad42dffb27995e325ca913.png?1740631185?bc=0?text=T", //T
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851512/original_8513fa618d549527346fcfb57fd495c0.png?1740631186?bc=0?text=U", //U
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851520/original_5d24cf20dcd0aa311cfc0f51e33207c5.png?1740631187?bc=0?text=V", //V
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851515/original_a9ad47b37ba84163912b6dc28dda23ca.png?1740631186?bc=0?text=W", //W
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851516/original_b6ae62df1ffbc080a70e2a4c3182bab5.png?1740631187?bc=0?text=X", //X
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851519/original_476fad225eaf4732c152c87a610ee592.png?1740631186?bc=0?text=Y", //Y
+            "https://d2w9rnfcy7mm78.cloudfront.net/34851518/original_4f9c24f9c057c417a77677563a758025.png?1740631188?bc=0?text=Z"  //Z
+        ];
+
+        function displayImage() {
+            const input = document.getElementById("charInput").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+            
+            // Assign an image based on character (A-Z)
+            const index = input.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+            } else {
+                /* 
+                alert("Please enter a letter between A and Z.");
+                imgElement.style.display = "none";
+                */
+
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
+                imgElement.src = "https://d2w9rnfcy7mm78.cloudfront.net/34852323/original_9e68e14559562aaa5a2b7507a0a0e860.png?1740635040?bc=0"
+                imgElement.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
